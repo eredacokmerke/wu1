@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body class="arkaplanAcikGri">
+        <h:form id="formGiris" class="formGiris">
+            <h:outputStylesheet name="css/sieses.css" />
+            <h:outputScript library="js" name="jies.js" />
+            <p:messages for="msgGiris" showDetail="true" autoUpdate="true" closable="true"/>
+            <div align="center" class="divGiris">
+                <div class="divGiris2">
+                    <table>
+                        <tr><td><p:inputText placeholder="kullanıcı adı" value="#{notlariGetir.kullaniciAdi}" /></td></tr>
+                        <tr><td><p:inputText placeholder="şifre" value="#{notlariGetir.sifre}" type="password" /></td></tr>
+                        <tr><td><br /></td></tr>
+                        <tr align="center"><td><p:commandButton id="btnGirisYap"  action="#{notlariGetir.kullaniciGirisiYap()}" value="giriş yap"></p:commandButton></td></tr>
+                        <tr align="center"><td><p:commandButton id="btnKayitOl" action="#{notlariGetir.kayitOl()}" value="kayıt ol"></p:commandButton></td></tr>
+                    </table>
+                </div>
+            </div>
+            <p:blockUI block=":#{p:component('formGiris')}" trigger=":#{p:component('btnGirisYap')}">  
+                <p>Giriş Yapılıyor</p><br />
+                <p:graphicImage  value="resources/gif/loading.gif"/>
+            </p:blockUI>
+            <p:blockUI block=":#{p:component('formGiris')}" trigger=":#{p:component('btnKayitOl')}">  
+                <p>Giriş Yapılıyor</p><br />
+                <p:graphicImage  value="resources/gif/loading.gif"/>
+            </p:blockUI>
+        </h:form>
+    </h:body>
+</html>

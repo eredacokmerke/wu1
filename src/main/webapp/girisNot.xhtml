@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head> 
+    <h:body class="arkaplanAcikGri" onload="#{notlariGetir.agaciOlustur()}">
+        <h:outputStylesheet name="css/sieses.css" />
+        <h:outputScript library="js" name="jies.js" />
+        <p:tabView id="tabNot" class="arkaplanKapaliGri">
+            <p:tab id="tabNotlariGor" title="Notlar">
+                <p:messages for="msgTabNotlariGor" showDetail="true" autoUpdate="true" closable="true"/>
+                <p:panelGrid columns="2" columnClasses="notTabAgac, notTabBaslik" style="width: 100%">
+                    <h:form id="formAgac"> 
+                        <p:tree id="agacNotlariGor" class="arkaplanAcikGri" value="#{notlariGetir.agacKonular}" var="node" dynamic="true" cache="false"  selectionMode="single" selection="#{notlariGetir.selectedNode}">  
+                            <p:ajax event="select" update=":#{p:component('formBasliklar')}" listener="#{notlariGetir.onNodeSelect}" />
+                            <p:treeNode class="notTabAgacKutu">  
+                                <h:outputLabel onclick="setColor2('agacSecenek');" id="agacSecenek" class="notTabAgacSecenek" value="#{node}" />
+                            </p:treeNode>  
+                        </p:tree> 
+                        <p:blockUI block=":#{p:component('tabNotlariGor')}" trigger=":#{p:component('agacNotlariGor')}">  
+                            <p>Kayıtlar Getiriliyor</p><br />
+                            <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+                        </p:blockUI>
+                    </h:form>
+                    <h:form id="formBasliklar">                     
+                        <p:dataTable id="dataTableBasliklar" rows="#{notlariGetir.listBasliklar.size()}"  value="#{notlariGetir.listBasliklar}" var="listBasliklarEleman">
+                            <p:column >
+                                <div align="center">
+                                    <p:outputLabel value="#{listBasliklarEleman.sira}" ></p:outputLabel>
+                                </div>
+                            </p:column>
+                            <p:column >
+                                <div align="center">
+                                    <h:commandLink action="#{notlariGetir.kaydiGetir(listBasliklarEleman.id)}" target="_blank" >
+                                        <h:outputText value="#{listBasliklarEleman.baslik}"/>
+                                    </h:commandLink>
+                                </div>
+                            </p:column>
+                            <p:column width="20%">
+                                <div align="center">
+                                    <p:menuButton value="Seçenekler">    
+                                        <p:menuitem value="Aç" actionListener="#{notlariGetir.kaydiGetir(listBasliklarEleman.id)}" onclick="PF('bui').show()" oncomplete="PF('bui').hide()"/>  
+                                        <p:menuitem value="İndir" ajax="false" actionListener="#{kayitIndir.indir(listBasliklarEleman.id)}" >
+                                            <p:fileDownload value="#{kayitIndir.indirilecekKayit}" /> 
+                                        </p:menuitem>  
+                                        <p:menuitem value="Sil" actionListener="#{notlariGetir.kaydiSil(listBasliklarEleman.id)}" action="#{notlariGetir.kayitListesiniGuncelle()}" onclick="PF('buiSil').show()" oncomplete="PF('buiSil').hide()" update=":#{p:component('dataTableBasliklar')}"/>
+                                        <p:menuitem value="Düzenle" ajax="false" action="#{notlariGetir.notDuzenlePenceresiniAc(listBasliklarEleman.id)}"/> 
+                                        <p:menuitem value="Ayrıntılar" actionListener="#{notlariGetir.notAyrintilariniGetir(listBasliklarEleman.id)}" onclick="PF('bui').show()" oncomplete="PF('bui').hide()"/>  
+                                        <p:separator />  
+                                        <p:menuitem value="Anasayfa"  outcome="giris"/>  
+                                    </p:menuButton>
+                                </div>
+                            </p:column>
+                        </p:dataTable>
+                        <p:blockUI widgetVar="bui" block=":#{p:component('tabNotlariGor')}">  
+                            <p>Kayıt Açılıyor</p><br />
+                            <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+                        </p:blockUI>
+                        <p:blockUI widgetVar="buiSil" block=":#{p:component('tabNotlariGor')}">  
+                            <p>Kayıt Siliniyor</p><br />
+                            <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+                        </p:blockUI>
+                    </h:form>
+                </p:panelGrid>
+            </p:tab>
+            <p:tab id="tabNotEkle" title="Yeni Not Ekle">
+                <h:form id="formYeniNotEkle" class="arkaplanKapaliGri">
+                    <p:messages for="msgYeniNotEkle" showDetail="true" autoUpdate="true" closable="true" />
+                    <br />
+                    <table>
+                        <tr>
+                            <td>
+                                <p:selectOneMenu id="menuKonu"  value="#{notlariGetir.kaydetKonu}" style="margin-top: 4px">
+                                    <f:selectItem itemLabel="Konu" itemValue="" />
+                                    <f:selectItems value="#{notlariGetir.listKonularString}"/>   
+                                </p:selectOneMenu>
+                            </td>
+                            <td style="width: 100%;">
+                                <p:commandButton value="Konuları Düzenle" action="#{notlariGetir.dialogKonulariDuzenleAc()}" >
+                                    <p:ajax event="dialogReturn" update=":#{p:component('menuKonu')}, :#{p:component('agacNotlariGor')}" />  
+                                </p:commandButton>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:outputText value="Başlık:" /> 
+                            </td>
+                            <td>
+                                <p:inputText id="txtBaslik" styleClass="txtNotEkleBaslik" type="text" value="#{notlariGetir.kaydetBaslik}" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:outputText value="Kayıt:" /> 
+                            </td>
+                            <td>
+                                <p:editor id="txtNot" height="400" styleClass="txtNotEkleEditor" value="#{notlariGetir.kaydetNot}" />
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <div align="center">
+                        <p:commandButton id="btnKaydet" actionListener="#{notlariGetir.kaydetNot()}" update=":#{p:component('menuKonu')},:#{p:component('txtNot')},:#{p:component('txtBaslik')}" value="Kaydet" style="margin: 3px" />
+                    </div>
+                    <p:blockUI block=":#{p:component('formYeniNotEkle')}" trigger=":#{p:component('btnKaydet')}">  
+                        <p>Kaydediliyor</p><br />
+                        <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+                    </p:blockUI>
+                </h:form>
+            </p:tab>
+        </p:tabView>
+    </h:body>
+</html>

@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="formNotDuzenle">
+            <h:outputStylesheet name="css/sieses.css" />
+            <p:messages for="msgNotDuzenle" showDetail="true" autoUpdate="true" closable="true" />
+            <br />
+            <table>
+                <tr>
+                    <td>
+                        <p:selectOneMenu id="menuKonu"  value="#{notlariGetir.guncelleKonu}" style="margin-top: 4px">
+                            <f:selectItem itemLabel="Konu" itemValue="" />
+                            <f:selectItems value="#{notlariGetir.listKonularString}"/>   
+                        </p:selectOneMenu>
+                    </td>
+                    <td style="width: 100%;">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputText value="Başlık:" /> 
+                    </td>
+                    <td>
+                        <p:inputText id="txtBaslik" styleClass="txtNotEkleBaslik" type="text" value="#{notlariGetir.guncelleBaslik}" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <h:outputText value="Kayıt:" /> 
+                    </td>
+                    <td>
+                        <p:editor id="txtNot" styleClass="txtNotEkleEditor" value="#{notlariGetir.guncelleNot}" />
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <div align="center">
+                <p:commandButton id="btnNotGuncelle" actionListener="#{notlariGetir.notGuncelle()}" update=":#{p:component('menuKonu')},:#{p:component('txtNot')},:#{p:component('txtBaslik')}" value="Güncelle" style="margin: 3px" />
+            </div>
+            <p:blockUI block=":#{p:component('formNotDuzenle')}" trigger=":#{p:component('btnNotGuncelle')}">  
+                <p>Kaydediliyor</p><br />
+                <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+            </p:blockUI>
+        </h:form>
+    </h:body>
+</html>
+

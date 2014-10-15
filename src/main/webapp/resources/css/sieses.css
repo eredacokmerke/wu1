@@ -1,0 +1,249 @@
+@font-face
+{
+    font-family: 'Cantarell';
+    src: url("../font/Cantarell.ttf");
+}
+
+*
+{
+    font-family: 'Cantarell' !important;
+}
+
+.formGiris
+{   
+    height: 90vh;
+}
+
+.txtNotEkleEditor
+{
+    width: 100%;
+}
+
+.txtNotEkleBaslik
+{
+    width: 99%;
+}
+
+.divGiris2
+{
+    border: solid 1px #d5d5d5;  
+    border-radius: 20px;
+    background-color: #d5d5d5;
+    box-shadow: 0 0 10px black;
+    width: 30%; 
+    height: 15em;
+    padding-top:  3em;
+    min-width: 300px
+}
+
+.divGiris
+{
+    position: absolute; 
+    width: 99%; 
+    top: 10%;
+    padding-top:  3em;
+    height: 50vh;
+}
+
+.notTabBaslik
+{
+    width: 100%;
+    background-color: #ebebeb;
+    vertical-align: top;
+}
+
+.notTabAgac 
+{
+    background-color: #ebebeb;
+    //font-weight: normal;
+    //white-space: nowrap;
+    //display: inline-block;
+    vertical-align: top;
+    //min-widminth: 300px;    
+}
+
+/*
+.notTabAgacKutu
+{
+    position: relative; 
+    //width: 50%;
+    height: 40px;
+}
+
+.notTabAgacSecenek
+{   
+    position: absolute;  
+    width: 80%;
+    padding: 5px;
+    background-color: #a4a4a4;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 0 5px blue inset;
+    transition: all 0.5s ease;
+}
+
+.notTabAgacSecenek:hover
+{
+    background-color: #7b7b7b;
+    //color: #008000;
+    //border-color: #008000;
+    //box-shadow: 0 0 10px #008000 inset;
+}
+*/
+
+/*
+.ui-treenode-content .ui-state-highlight
+{
+    border: solid 2px yellow !important;
+    background-color: firebrick !important;
+    color: yellow;
+}
+
+.ui-treenode-content .ui-state-hover
+{
+    border: solid 2px hotpink;
+    background-color: violet !important;;
+}
+
+.ui-treenode-content:hover
+{
+    border: solid 2px yellow;
+    background-color: red !important;;
+}
+
+.ui-treenode-content
+{
+    border: solid 2px red;
+
+    position: absolute;  
+    width: 100%;
+    //padding: 5px;
+    background-color:  lightgrey;
+    color: blue;
+    border-radius: 5px;
+    box-shadow: 0 0 5px blue inset;
+    transition: all 0.5s ease;
+}
+
+.ui-treenode
+{
+    border: solid 2px blue;
+    background-color: violet !important;;
+}
+
+.ui-tree
+{
+    background-color: pink !important;
+}
+*/
+
+.ui-widget
+{
+    font-family:Arial,sans-serif;
+    font-size: 95% !important;
+}
+
+.arkaplanAcikGri
+{
+    background-color: #EBEBEB;
+}
+
+.arkaplanKapaliGri
+{
+    background-color: #d5d5d5;
+}
+
+/*
+.tabBaslik 
+{
+    background-color:yellow !important;
+}
+
+.tabBaslik:hover
+{
+    background-color:green !important;
+}
+*/
+
+/*
+.gecis
+{
+    transition: all 0.2s ease;
+}
+*/
+
+/*
+.girisInput
+{
+    margin-top: 0.5em;
+    padding: 0.5em;
+    padding-left: 20px;
+    padding-right: 20px;
+    width:10em;
+    transition: all 0.5s ease;
+    background-color: #EBEBEB;
+    box-shadow: 0 0 5px blue inset;
+}
+
+.girisInput:hover
+{
+    background-color: white;
+    color:#676767;
+}
+
+.girisInput:focus
+{
+    background-color: white;
+    color: #676767;
+    box-shadow: 0 0 10px blue inset;
+}
+*/
+
+/*
+.dugme1
+{
+    position: relative;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: inline-block;
+    border: solid 1px;
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: #EBEBEB;
+    width: 6em;
+    transition: all 0.5s ease;
+
+    //margin: 50px;
+    //font-family: Cantarell;
+}
+
+.dugmeYesil
+{
+    color: #008000;
+    border-color: #008000;
+    box-shadow: 0 0 10px #008000 inset;
+}
+
+.dugmeYesil:hover 
+{  
+    background-color: #008000;
+    color:white;
+    box-shadow: 0 0 10px #008000 inset, 0 0 20px #008000;
+}
+
+.dugmeKirmizi
+{
+    color: #800000;
+    border-color: #800000;
+    box-shadow: 0 0 10px #800000 inset
+}
+
+.dugmeKirmizi:hover 
+{
+    background-color: #800000;
+    color:white;
+    box-shadow: 0 0 10px #800000 inset, 0 0 20px #800000;
+}
+*/

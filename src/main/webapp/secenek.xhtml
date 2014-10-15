@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body class="arkaplanAcikGri">
+        <h:form id="formSecenek" class="formGiris">
+            <h:outputStylesheet name="css/sieses.css" />
+            <div align="center" class="divGiris">
+                <!--<p:commandButton  value="not" action="#{notlariGetir.notSayfasinaGit()}" />
+                <p:button value="uygulama" outcome="girisNot" />
+                <p:commandButton id="btnRehber" value="rehber" />
+                <br />-->
+                <p:commandLink id="btnNot" class="dugme1 dugmeYesil" action="#{notlariGetir.notSayfasinaGit()}"><span>uygulama</span></p:commandLink>
+            </div>
+            <p:blockUI block=":#{p:component('formSecenek')}" trigger=":#{p:component('btnNot')}">  
+                <p>Notlar Açılıyor</p><br />
+                <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+            </p:blockUI>
+        </h:form>
+    </h:body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form id="formKonulariDuzenle" style="height: 90vh">
+            <h:outputStylesheet name="css/sieses.css" />
+            <p:messages for="msgKonulariDuzenle" showDetail="true" autoUpdate="true" closable="true" />
+            <p:dataTable id="dataTableBasliklar" rows="#{notlariGetir.listKonular.size()}"  value="#{notlariGetir.listKonular}" var="listKonularEleman">
+                <p:column>
+                    <div align="center">
+                        <h:outputText value="#{listKonularEleman.konu}"/>
+                    </div>
+                </p:column>
+                <p:column width="20%">
+                    <div align="center">
+                        <p:commandButton id="btnKonuSil" value="Sil" update=":#{p:component('dataTableBasliklar')}" action="#{notlariGetir.konuSil(listKonularEleman.id)}" onclick="PF('buiSil').show()" oncomplete="PF('buiSil').hide()"/>
+                    </div>
+                </p:column>
+            </p:dataTable>
+            <br />
+            <div align="center">
+                <p:panelGrid columns="3">
+                    <p:outputLabel value="Yeni Konu:" />
+                    <p:inputText id="txtYeniKonu" type="text" value="#{notlariGetir.yeniKonu}" />
+                    <p:commandButton id="btnYeniKonuKaydet" update=":#{p:component('dataTableBasliklar')}, :#{p:component('txtYeniKonu')}" value="Kaydet" action="#{notlariGetir.konuKaydet()}"/>
+                </p:panelGrid>
+                <br />
+                <p:commandButton value="Çıkış" actionListener="#{konulariDuzenle.dialoguKapat(listKonularEleman)}"/>
+            </div>
+            <p:blockUI widgetVar="buiSil" block=":#{p:component('formKonulariDuzenle')}">  
+                <p>Siliniyor</p><br />
+                <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+            </p:blockUI>
+            <p:blockUI widgetVar="buiKaydet" block=":#{p:component('formKonulariDuzenle')}" trigger=":#{p:component('btnYeniKonuKaydet')}">  
+                <p>Kaydediliyor</p><br />
+                <p:graphicImage value="http://www.primefaces.org/showcase/images/loading.gif"/>  
+            </p:blockUI>
+        </h:form>
+    </h:body>
+</html>
